@@ -41,7 +41,7 @@ void Swap(ref int leftItem, ref int rightItem)
 9 5 3 2
 8 4 4 2*/
 //----------------------------------SOLUTION-----------------------------------
-
+/*
 int[,] SortDownLine(int[,] mas)
 {
     for (int i = 0; i < mas.GetLength(0); i++) // Берем строку
@@ -57,7 +57,43 @@ int[,] SortDownLine(int[,] mas)
     return mas;
 }
 
-int[,] newarry = FillMas(3, 5);
-PrintArray(newarry);
+int[,] newArry = FillMas(3, 5);
+PrintArray(newArry);
 System.Console.WriteLine("____________");
-PrintArray(SortDownLine(newarry));
+PrintArray(SortDownLine(newArry));
+*/
+//----------------------------------Exercise #54------------------------------
+/*Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
+Например, задан массив:
+1 4 7 2
+5 9 2 3
+8 4 2 4
+5 2 6 7
+Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка*/
+//----------------------------------SOLUTION-----------------------------------
+
+int LowestLine(int[,] mas)
+{
+    int[] sumInLine = new int[mas.GetLength(0)];
+    for (int i = 0; i < mas.GetLength(0); i++)
+    {
+        for (int j = 0; j < mas.GetLength(1); j++)
+        {
+            sumInLine[i] += mas[i, j];
+        }
+    }
+    for (int i = 0; i < sumInLine.Length; i++)
+    {
+        for (int j = 0; j < sumInLine; j++)
+        {
+            if (sumInLine[i] < sumInLine[j]) Swap(ref sumInLine[i], ref sumInLine[j]);
+        }
+    }
+    return sumInLine[0];
+}
+
+int[,] newArry = FillMas(3, 5);
+PrintArray(newArry);
+System.Console.WriteLine("____________");
+
+System.Console.WriteLine($"Самая маленькая суммма в массиве на {LowestLine(newArry)} строчке.");
